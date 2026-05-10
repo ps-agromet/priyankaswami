@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dr. Priyanka Swami | Agricultural Meteorologist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #1b3a5c;
+      --green:  #2e6f40;
+      --gold:   #b8860b;
+      --bg:     #f7f5f0;
+      --card:   #ffffff;
+      --text:   #1f2937;
+      --muted:  #6b7280;
+      --border: #e5e7eb;
+      --accent: #e8f0fe;
+      --radius: 10px;
+      --shadow: 0 2px 12px rgba(0,0,0,.08);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--navy);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      box-shadow: 0 2px 8px rgba(0,0,0,.25);
+    }
+    nav .brand {
+      color: #fff; font-size: 1rem; font-weight: 600;
+      padding: 1rem 0; letter-spacing: .3px;
+      font-family: 'Crimson Pro', serif; font-size: 1.15rem;
+    }
+    nav ul { list-style: none; display: flex; gap: .25rem; }
+    nav ul li a {
+      color: rgba(255,255,255,.85); text-decoration: none;
+      font-size: .8rem; font-weight: 500; letter-spacing: .5px;
+      text-transform: uppercase;
+      padding: .45rem .75rem; border-radius: 4px;
+      transition: background .2s, color .2s;
+    }
+    nav ul li a:hover { background: rgba(255,255,255,.15); color: #fff; }
+
+    /* ── HERO ── */
+    header {
+      background: linear-gradient(135deg, #1b3a5c 0%, #0f2340 60%, #1b3a5c 100%);
+      color: #fff; padding: 4rem 2rem 3.5rem;
+    }
+    .hero-inner {
+      max-width: 960px; margin: 0 auto;
+      display: flex; align-items: center; gap: 3rem;
+      flex-wrap: wrap;
+    }
+    .hero-photo {
+      flex-shrink: 0;
+      width: 190px; height: 190px;
+      border-radius: 50%;
+      border: 4px solid rgba(255,255,255,.35);
+      object-fit: cover; object-position: top;
+      box-shadow: 0 8px 32px rgba(0,0,0,.35);
+    }
+    .hero-text { flex: 1; min-width: 260px; }
+    .hero-text h1 {
+      font-family: 'Crimson Pro', serif;
+      font-size: 2.6rem; font-weight: 600;
+      line-height: 1.1; margin-bottom: .5rem;
+      letter-spacing: .5px;
+    }
+    .hero-text .subtitle {
+      font-size: 1.05rem; font-weight: 400;
+      color: rgba(255,255,255,.8); margin-bottom: .35rem;
+    }
+    .hero-text .institution {
+      font-size: .9rem; color: rgba(255,255,255,.65);
+      margin-bottom: 1.4rem;
+    }
+    .hero-links { display: flex; flex-wrap: wrap; gap: .6rem; }
+    .hero-links a {
+      display: inline-flex; align-items: center; gap: .4rem;
+      background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.25);
+      color: #fff; text-decoration: none; padding: .4rem .9rem;
+      border-radius: 30px; font-size: .8rem; font-weight: 500;
+      transition: background .2s;
+    }
+    .hero-links a:hover { background: rgba(255,255,255,.25); }
+    .hero-links svg { width: 14px; height: 14px; fill: currentColor; }
+
+    /* ── SECTION WRAPPER ── */
+    .page { max-width: 960px; margin: 0 auto; padding: 0 1.5rem 3rem; }
+
+    section { padding-top: 3.5rem; }
+    .section-title {
+      font-family: 'Crimson Pro', serif;
+      font-size: 1.75rem; font-weight: 600; color: var(--navy);
+      border-bottom: 3px solid var(--green);
+      padding-bottom: .4rem; margin-bottom: 1.5rem;
+      display: inline-block;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;
+    }
+    @media(max-width:640px){ .about-grid { grid-template-columns: 1fr; } }
+    .about-card {
+      background: var(--card); border-radius: var(--radius);
+      box-shadow: var(--shadow); padding: 1.25rem 1.4rem;
+      border-left: 4px solid var(--green);
+    }
+    .about-card h3 {
+      font-size: .75rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 1px; color: var(--muted); margin-bottom: .5rem;
+    }
+    .about-card p { font-size: .92rem; color: var(--text); }
+
+    .interest-pills { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .75rem; }
+    .pill {
+      background: var(--accent); color: var(--navy);
+      font-size: .78rem; font-weight: 500; padding: .25rem .75rem;
+      border-radius: 30px; border: 1px solid #c7d9f7;
+    }
+
+    /* ── TIMELINE (education / experience) ── */
+    .timeline { position: relative; padding-left: 1.6rem; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: 8px;
+      bottom: 0; width: 2px; background: var(--border);
+    }
+    .tl-item { position: relative; margin-bottom: 1.4rem; }
+    .tl-item::before {
+      content: ''; position: absolute; left: -1.98rem; top: 8px;
+      width: 11px; height: 11px; border-radius: 50%;
+      background: var(--green); border: 2px solid #fff;
+      box-shadow: 0 0 0 2px var(--green);
+    }
+    .tl-item .tl-head {
+      display: flex; align-items: baseline; gap: .75rem;
+      flex-wrap: wrap; margin-bottom: .2rem;
+    }
+    .tl-item .tl-title { font-weight: 600; font-size: .98rem; color: var(--navy); }
+    .tl-item .tl-year {
+      font-size: .78rem; font-weight: 600; color: var(--green);
+      background: #e8f5e9; padding: .15rem .55rem; border-radius: 4px;
+    }
+    .tl-item .tl-sub { font-size: .87rem; color: var(--muted); }
+    .tl-item .tl-dept {
+      font-size: .82rem; color: var(--muted); font-style: italic;
+      margin-top: .15rem;
+    }
+
+    /* ── PUBLICATIONS ── */
+    .pub-list { display: flex; flex-direction: column; gap: 1rem; }
+    .pub-card {
+      background: var(--card); border-radius: var(--radius);
+      box-shadow: var(--shadow); padding: 1.1rem 1.3rem;
+      border-left: 4px solid var(--navy);
+      position: relative;
+    }
+    .pub-card .pub-year {
+      position: absolute; top: 1rem; right: 1.1rem;
+      font-size: .75rem; font-weight: 700;
+      background: var(--navy); color: #fff;
+      padding: .15rem .55rem; border-radius: 4px;
+    }
+    .pub-card .pub-title { font-weight: 600; font-size: .94rem; color: var(--navy); margin-bottom: .3rem; }
+    .pub-card .pub-authors { font-size: .84rem; color: var(--muted); margin-bottom: .25rem; }
+    .pub-card .pub-journal {
+      font-size: .82rem; font-style: italic; color: var(--text);
+    }
+    .pub-card .pub-doi {
+      font-size: .78rem; margin-top: .3rem;
+    }
+    .pub-card .pub-doi a { color: var(--green); text-decoration: none; }
+    .pub-card .pub-doi a:hover { text-decoration: underline; }
+
+    .pub-sub-title {
+      font-size: 1rem; font-weight: 600; color: var(--navy);
+      margin: 1.6rem 0 .75rem;
+    }
+
+    .book-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 1rem; }
+    .book-card {
+      background: var(--card); border-radius: var(--radius);
+      box-shadow: var(--shadow); padding: 1rem 1.2rem;
+      border-top: 4px solid var(--gold); text-align: center;
+    }
+    .book-card .book-icon { font-size: 2rem; margin-bottom: .4rem; }
+    .book-card p { font-size: .88rem; font-weight: 500; color: var(--text); }
+
+    .other-contrib { display: flex; flex-wrap: wrap; gap: .6rem; margin-top: .5rem; }
+    .contrib-badge {
+      background: #f3f4f6; border: 1px solid var(--border);
+      border-radius: 6px; padding: .35rem .8rem;
+      font-size: .82rem; color: var(--text);
+    }
+    .contrib-badge span { font-weight: 700; color: var(--navy); }
+
+    /* ── AWARDS TABLE ── */
+    .awards-table { width: 100%; border-collapse: collapse; background: var(--card);
+      border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+    .awards-table thead { background: var(--navy); color: #fff; }
+    .awards-table thead th { padding: .7rem 1rem; font-size: .82rem;
+      font-weight: 600; text-align: left; text-transform: uppercase; letter-spacing: .5px; }
+    .awards-table tbody tr:nth-child(even) { background: #f9fafb; }
+    .awards-table tbody tr:hover { background: #eef2ff; }
+    .awards-table td { padding: .65rem 1rem; font-size: .86rem; border-bottom: 1px solid var(--border); }
+    .awards-table td:first-child { font-weight: 700; color: var(--green); white-space: nowrap; }
+
+    /* ── CONFERENCES ── */
+    .conf-list { display: flex; flex-direction: column; gap: .85rem; }
+    .conf-item {
+      background: var(--card); border-radius: var(--radius);
+      box-shadow: var(--shadow); padding: .9rem 1.2rem .9rem 1rem;
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .conf-dot {
+      flex-shrink: 0; margin-top: .35rem;
+      width: 9px; height: 9px; border-radius: 50%;
+      background: var(--green);
+    }
+    .conf-item p { font-size: .87rem; color: var(--text); }
+    .conf-item strong { color: var(--navy); }
+
+    /* ── RESPONSIBILITIES ── */
+    .resp-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(220px,1fr)); gap: 1rem; }
+    .resp-card {
+      background: var(--card); border-radius: var(--radius);
+      box-shadow: var(--shadow); padding: 1rem 1.1rem;
+      border-top: 3px solid var(--navy);
+    }
+    .resp-card p { font-size: .87rem; color: var(--text); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy); color: rgba(255,255,255,.7);
+      text-align: center; padding: 1.75rem 1rem;
+      font-size: .82rem; margin-top: 2rem;
+    }
+    footer a { color: rgba(255,255,255,.85); }
+
+    /* ── RESPONSIVE NAV ── */
+    @media(max-width:640px){
+      nav ul { gap: 0; }
+      nav ul li a { padding: .4rem .5rem; font-size: .7rem; }
+      .hero-text h1 { font-size: 1.9rem; }
+      .hero-photo { width: 140px; height: 140px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAVIGATION ═══ -->
+<nav>
+  <div class="brand">Dr. Priyanka Swami</div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#awards">Awards</a></li>
+    <li><a href="#conferences">Conferences</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<header>
+  <div class="hero-inner">
+    <img class="hero-photo" src="photo.jpeg" alt="Dr. Priyanka Swami" />
+    <div class="hero-text">
+      <h1>Dr. Priyanka Swami</h1>
+      <p class="subtitle">Assistant Professor &amp; Agricultural Meteorologist</p>
+      <p class="institution">Agriculture University Jodhpur, Mandor, Jodhpur &ndash; 343204, Rajasthan, India</p>
+      <div class="hero-links">
+        <a href="mailto:priyankamah30@gmail.com">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 2-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/></svg>
+          priyankamah30@gmail.com
+        </a>
+        <a href="tel:+918476975453">
+          <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+          +91 8476975453
+        </a>
+        <a href="https://www.researchgate.net/profile/Priyanka-Swami-2" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path fill="#fff" d="M7 8h2v8H7zm1-2.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm4 2.5h3c3 0 4.5 2 4.5 4s-1.5 4-4.5 4h-3V8zm2 1.5v5h1c1.5 0 2.5-1 2.5-2.5S16.5 9.5 15 9.5h-1z"/></svg>
+          Research Gate
+        </a>
+        <a href="https://scholar.google.com/citations?user=bFHCynMAAAAJ&hl=en" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg>
+          Google Scholar
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="page">
+
+  <!-- ═══ ABOUT ═══ -->
+  <section id="about">
+    <h2 class="section-title">About</h2>
+    <p style="margin-bottom:1.25rem; color:var(--text); font-size:.95rem;">
+      Dr. Priyanka Swami is an Assistant Professor of Agricultural Meteorology at Agriculture University Jodhpur.
+      Her research bridges <strong>climate science, remote sensing, and precision agriculture</strong> — with a focus on
+      crop modelling, machine learning–based rainfall prediction, and agrometeorology in arid and semi-arid
+      ecosystems of Rajasthan. She has contributed to national crop forecasting through her work at the
+      Mahalanobis National Crop Forecast Centre and presented her research at international venues including
+      Columbia University, New York.
+    </p>
+    <div class="about-grid">
+      <div class="about-card">
+        <h3>Research Interests</h3>
+        <div class="interest-pills">
+          <span class="pill">Agricultural Meteorology</span>
+          <span class="pill">Crop Modelling (APSIM, CERES, AquaCrop)</span>
+          <span class="pill">Remote Sensing &amp; GIS</span>
+          <span class="pill">Machine Learning in Agriculture</span>
+          <span class="pill">Rainfall Prediction (LSTM)</span>
+          <span class="pill">Climate Risk Assessment</span>
+          <span class="pill">Vegetation Productivity</span>
+          <span class="pill">Agromet Advisory</span>
+        </div>
+      </div>
+      <div class="about-card">
+        <h3>Current Responsibilities</h3>
+        <p>Nodal Officer &mdash; Kisan Kaushal Vikas Kendra (since 2022)</p>
+        <p>Managing Editor &mdash; University Newsletter <em>Marudhara</em></p>
+        <p>Member Secretary &mdash; University Publication Cell</p>
+        <p>Member Secretary &mdash; University Innovation Cell &amp; ICC</p>
+        <p>Research Projects: <strong>2</strong> &nbsp;|&nbsp; Students Guided: <strong>4</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ EDUCATION ═══ -->
+  <section id="education">
+    <h2 class="section-title">Education</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-head">
+          <span class="tl-title">Doctor of Philosophy (Ph.D)</span>
+          <span class="tl-year">2022</span>
+        </div>
+        <div class="tl-sub">Agricultural Meteorology</div>
+        <div class="tl-dept">G.B. Pant University of Agriculture &amp; Technology (GBPUAT), Pantnagar</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-head">
+          <span class="tl-title">Master of Science (M.Sc)</span>
+          <span class="tl-year">2015</span>
+        </div>
+        <div class="tl-sub">Agricultural Meteorology</div>
+        <div class="tl-dept">CCS Haryana Agricultural University (CCS HAU), Hisar</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-head">
+          <span class="tl-title">Bachelor of Science (B.Sc)</span>
+          <span class="tl-year">2013</span>
+        </div>
+        <div class="tl-sub">Agriculture Science</div>
+        <div class="tl-dept">Swami Keshwanand Rajasthan Agricultural University (SKRAU), Bikaner</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ EXPERIENCE ═══ -->
+  <section id="experience">
+    <h2 class="section-title">Professional Experience</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-head">
+          <span class="tl-title">Assistant Professor</span>
+          <span class="tl-year">Current</span>
+        </div>
+        <div class="tl-sub">Department of Agricultural Meteorology</div>
+        <div class="tl-dept">Agriculture University, Jodhpur, Rajasthan</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-head">
+          <span class="tl-title">Subject Matter Specialist</span>
+        </div>
+        <div class="tl-sub">Krishi Vigyan Kendra (KVK), Chittorgarh</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-head">
+          <span class="tl-title">Subject Matter Specialist</span>
+        </div>
+        <div class="tl-sub">Krishi Vigyan Kendra (KVK), Sirohi</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-head">
+          <span class="tl-title">Research Analyst</span>
+        </div>
+        <div class="tl-sub">Mahalanobis National Crop Forecast Centre (MNCFC), New Delhi</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ PUBLICATIONS ═══ -->
+  <section id="publications">
+    <h2 class="section-title">Research Publications</h2>
+
+    <p class="pub-sub-title">Peer-Reviewed Journal Articles</p>
+    <div class="pub-list">
+
+      <div class="pub-card">
+        <span class="pub-year">2025</span>
+        <div class="pub-title">Innovations in Remote Sensing Techniques for Monitoring Agricultural Crops and Environmental Stress Conditions: A Review</div>
+        <div class="pub-authors">Swami P., Anusha M., David K.M., Ashoka P., Saivamsireddy G., Upadhyay L., and Panigrahi C.K.</div>
+        <div class="pub-journal">Journal of Scientific Research and Reports, 31(6): 178–194</div>
+        <div class="pub-doi"><a href="https://doi.org/10.9734/jsrr/2025/v31i63120" target="_blank">DOI: 10.9734/jsrr/2025/v31i63120</a></div>
+      </div>
+
+      <div class="pub-card">
+        <span class="pub-year">2024</span>
+        <div class="pub-title">Calibration and performance evaluation of the APSIM and CERES-Wheat model in the foothills of Western Himalayas</div>
+        <div class="pub-authors">Pareek N., Kumar H., Singh S., Singh M., Swami P., Kumar S.</div>
+        <div class="pub-journal">International Journal of Agrometeorology, 22: 319</div>
+      </div>
+
+      <div class="pub-card">
+        <span class="pub-year">2024</span>
+        <div class="pub-title">Trend analysis and change-point detection of monsoon rainfall in Uttarakhand and its impact on vegetation productivity</div>
+        <div class="pub-authors">Swami P.</div>
+        <div class="pub-journal">Journal of Agrometeorology, 26(1): 103–108</div>
+        <div class="pub-doi"><a href="https://doi.org/10.54386/jam.v26i1.2214" target="_blank">DOI: 10.54386/jam.v26i1.2214</a></div>
+      </div>
+
+      <div class="pub-card">
+        <span class="pub-year">2024</span>
+        <div class="pub-title">Effect of calcium chloride postharvest treatment in combination with Aloe vera gel on fruit quality and storability of spine gourd under refrigeration condition</div>
+        <div class="pub-authors">Bhardwaj R.L., Choudhary K., Hingoniya K., Swami P., Sharma A., Meena J.</div>
+        <div class="pub-journal">Journal of Applied Horticulture, 26</div>
+      </div>
+
+      <div class="pub-card">
+        <span class="pub-year">2024</span>
+        <div class="pub-title">Revolutionizing Agriculture with Artificial Intelligence (AI): A Comprehensive Review</div>
+        <div class="pub-authors">Kumar P., Pandey S., Meena A., Swamy J., Hazarika M., Swami P.</div>
+        <div class="pub-journal">Interdisciplinary Research in Agriculture and Plant Sciences, Chapter 2</div>
+      </div>
+
+      <div class="pub-card">
+        <span class="pub-year">2024</span>
+        <div class="pub-title">Impact of different sowing dates and irrigation levels on growth and yield of wheat varieties under tarai region of Uttarakhand</div>
+        <div class="pub-authors">Pareek N., Nain A.S., Singh A.K., Kumar S., Kumar B., Swami P.</div>
+        <div class="pub-journal">Journal of AgriSearch, 12(1): 07–14</div>
+        <div class="pub-doi"><a href="https://doi.org/10.21921/jas.v12i01.15225" target="_blank">DOI: 10.21921/jas.v12i01.15225</a></div>
+      </div>
+
+      <div class="pub-card">
+        <span class="pub-year">2020</span>
+        <div class="pub-title">Effect of Fertilizers and Foliar Application of Nutrient on Wheat Grain Yield through Farm Trails at Farmers Fields</div>
+        <div class="pub-authors">Solanki R.L., Swami P., Nagar K.C., Dashora A.K.</div>
+        <div class="pub-journal">International Journal of Current Microbiology and Applied Sciences, Vol. 9</div>
+      </div>
+
+      <div class="pub-card">
+        <span class="pub-year">2020</span>
+        <div class="pub-title">Impact of Training and Demonstration on Adoption of Maize Production Technology by Farmers of District Chittorgarh, India</div>
+        <div class="pub-authors">Solanki R.L., Indoria D., Swami P., Agarwal S.K., Jalwania R.</div>
+        <div class="pub-journal">International Journal of Current Microbiology and Applied Sciences, Vol. 9</div>
+      </div>
+
+      <div class="pub-card">
+        <span class="pub-year">2020</span>
+        <div class="pub-title">Evaluation of Yield Performance of Soybean through Cluster Front Line Demonstrations</div>
+        <div class="pub-authors">Solanki R.L., Nagar K.C., Agarwal S.K., Swami P., Indoria D.</div>
+        <div class="pub-journal">International Journal of Current Microbiology and Applied Sciences, Vol. 9</div>
+      </div>
+
+      <div class="pub-card">
+        <span class="pub-year">2017</span>
+        <div class="pub-title">Association of Weather Variables with Pest Outbreak in Bt-Cotton in the Cotton Belt of North India</div>
+        <div class="pub-authors">Swami P., Ramniwas, Maharshi A., Khichar M.L.</div>
+        <div class="pub-journal">International Journal of Current Microbiology and Applied Sciences, Vol. 6</div>
+      </div>
+
+      <div class="pub-card">
+        <span class="pub-year">2017</span>
+        <div class="pub-title">Progression of Cotton Leaf Curl Disease and its Vector Whitefly under Weather Influences</div>
+        <div class="pub-authors">Maharshi A., Yadav N.K., Swami P., Singh P., Singh J.</div>
+        <div class="pub-journal">International Journal of Current Microbiology and Applied Sciences, Vol. 6</div>
+      </div>
+
+    </div>
+
+    <p class="pub-sub-title">Books</p>
+    <div class="book-grid">
+      <div class="book-card">
+        <div class="book-icon">&#128214;</div>
+        <p>Agroclimatic Atlas of Rajasthan</p>
+      </div>
+      <div class="book-card">
+        <div class="book-icon">&#128214;</div>
+        <p>Agrometeorology: Principles and Applications in Agriculture</p>
+      </div>
+    </div>
+
+    <p class="pub-sub-title">Other Contributions</p>
+    <div class="other-contrib">
+      <div class="contrib-badge"><span>5</span> Book Chapters</div>
+      <div class="contrib-badge"><span>7</span> Training Manuals</div>
+      <div class="contrib-badge"><span>2</span> Practical Manuals</div>
+      <div class="contrib-badge"><span>20+</span> Conference Participations</div>
+      <div class="contrib-badge"><span>6</span> Popular Articles</div>
+      <div class="contrib-badge"><span>2</span> Reports</div>
+    </div>
+  </section>
+
+  <!-- ═══ AWARDS ═══ -->
+  <section id="awards">
+    <h2 class="section-title">Awards &amp; Recognition</h2>
+    <table class="awards-table">
+      <thead>
+        <tr><th>Year</th><th>Award / Recognition</th><th>Awarding Agency</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>2026</td><td>Best Paper Presentation Award</td><td>Sher-e-Kashmir University of Agricultural Sciences &amp; Technology, Jammu</td></tr>
+        <tr><td>2026</td><td>Best Paper Presentation Award</td><td>Central Agriculture University, Imphal</td></tr>
+        <tr><td>2025</td><td>Appreciation Award for University Publications</td><td>Agriculture University Jodhpur</td></tr>
+        <tr><td>2024</td><td>Best Employee Award</td><td>Agriculture University Jodhpur</td></tr>
+        <tr><td>2023</td><td>Vice Chancellor's Appreciation Award</td><td>Agriculture University Jodhpur</td></tr>
+        <tr><td>2023</td><td>Best Paper Award</td><td>Agriculture University Jodhpur</td></tr>
+        <tr><td>2023</td><td>Best Paper Award</td><td>Indian Arid Legumes Society</td></tr>
+        <tr><td>2023</td><td>Best Paper Presentation Award</td><td>Tamil Nadu Agriculture University</td></tr>
+        <tr><td>2022</td><td>Best Paper Award</td><td>Association of Agrometeorologists</td></tr>
+        <tr><td>2017</td><td>Young Scientist Award</td><td>Banaras Hindu University</td></tr>
+        <tr><td>2017</td><td>Best Paper Presentation Award</td><td>Banaras Hindu University</td></tr>
+        <tr><td>2017</td><td>Best Poster Presentation Award</td><td>BHU &amp; G.B. Pant University of Agriculture &amp; Technology</td></tr>
+        <tr><td>2016</td><td>Senior Research Fellowship</td><td>ICAR</td></tr>
+        <tr><td>2016</td><td>Best Team Award</td><td>Confederation of Indian Industry, Chandigarh</td></tr>
+        <tr><td>2016</td><td>Best Poster Presentation Award</td><td>UCBMS&amp;H Dehradun, Uttarakhand</td></tr>
+        <tr><td>2016</td><td>Distinction in Online Training Course</td><td>UAS Raichur &amp; IIT Kanpur</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ═══ CONFERENCES ═══ -->
+  <section id="conferences">
+    <h2 class="section-title">Conference Presentations</h2>
+    <div class="conf-list">
+      <div class="conf-item"><div class="conf-dot"></div><p><strong>2026 &mdash; Sher-e-Kashmir University, Jammu:</strong> "AI and ML-Driven Agricultural Advisory Integrating Remote Sensing, Agricultural Meteorology, Large Language Models and Indian Knowledge Systems" — National Conference on Integrating Indian Knowledge Systems with Modern Science for Viksit Bharat.</p></div>
+      <div class="conf-item"><div class="conf-dot"></div><p><strong>2026 &mdash; International Conference:</strong> Himalayan GREENPRINT: Fostering Innovations for Sustainable Agriculture, Livelihoods and Entrepreneurship through Research and Development in the Eastern Himalaya.</p></div>
+      <div class="conf-item"><div class="conf-dot"></div><p><strong>2023 &mdash; NEASI-2023, Indian Arid Legumes Society:</strong> "Crop model as tool for identification, quantification and crop risk assessment."</p></div>
+      <div class="conf-item"><div class="conf-dot"></div><p><strong>2023 &mdash; AgMIP9, Columbia University, New York:</strong> "Climate risk area identification and shock prediction for pearl millet production in North West India."</p></div>
+      <div class="conf-item"><div class="conf-dot"></div><p><strong>2023 &mdash; International Conference on Millets &amp; Seed Spices:</strong> "Calibration and validation of AquaCrop crop model for pearl millet crop for North-West India."</p></div>
+      <div class="conf-item"><div class="conf-dot"></div><p><strong>2022 &mdash; AGMET-2022:</strong> "Rainfall prediction using LSTM &mdash; A case study of Uttarakhand."</p></div>
+      <div class="conf-item"><div class="conf-dot"></div><p><strong>2022 &mdash; TROPMET-2022:</strong> Application of machine learning in rainfall prediction.</p></div>
+      <div class="conf-item"><div class="conf-dot"></div><p><strong>2017 &mdash; Punjab Agricultural University, Ludhiana:</strong> Indo-US Symposium "Curbing whitefly-plant virus pandemics &mdash; from pesticides to genomics solutions."</p></div>
+      <div class="conf-item"><div class="conf-dot"></div><p><strong>2017 &mdash; CCS HAU, Hisar:</strong> National Seminar on Agrometeorology for Sustainable Development.</p></div>
+      <div class="conf-item"><div class="conf-dot"></div><p><strong>2017 &mdash; Banaras Hindu University:</strong> International Conference on Agricultural Allied Sciences &amp; Biotechnology.</p></div>
+      <div class="conf-item"><div class="conf-dot"></div><p><strong>2016 &mdash; BHU, Varanasi:</strong> International Conference on Climate Change and Its Implications on Crop Production and Food Security.</p></div>
+      <div class="conf-item"><div class="conf-dot"></div><p><strong>2016 &mdash; ICAR-IIPR, Kanpur:</strong> National Symposium on Eco-friendly Approaches for Plant Disease Management.</p></div>
+      <div class="conf-item"><div class="conf-dot"></div><p><strong>2016 &mdash; Dehradun, Uttarakhand:</strong> National Conference on Natural Resource Management Avenues &amp; Application (NRMAA).</p></div>
+    </div>
+  </section>
+
+  <!-- ═══ CONTACT ═══ -->
+  <section id="contact">
+    <h2 class="section-title">Contact</h2>
+    <div class="about-grid">
+      <div class="about-card">
+        <h3>Mailing Address</h3>
+        <p>Department of Agricultural Meteorology<br>
+        Agriculture University Jodhpur<br>
+        Administrative Block, Mandor<br>
+        Jodhpur &ndash; 343204, Rajasthan, India</p>
+      </div>
+      <div class="about-card">
+        <h3>Get in Touch</h3>
+        <p>
+          <strong>Email:</strong> <a href="mailto:priyankamah30@gmail.com" style="color:var(--green)">priyankamah30@gmail.com</a><br>
+          <strong>Phone:</strong> +91 8476975453
+        </p>
+        <br>
+        <p style="font-size:.82rem; color:var(--muted);">
+          For collaborations in agricultural meteorology, crop modelling, remote sensing, or climate data analysis, feel free to reach out.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /page -->
+
+<footer>
+  <p>&copy; 2025 Dr. Priyanka Swami &mdash; Assistant Professor, Agricultural Meteorology, Agriculture University Jodhpur</p>
+  <p style="margin-top:.4rem; font-size:.75rem;">Built with GitHub Pages</p>
+</footer>
+
+</body>
+</html>
