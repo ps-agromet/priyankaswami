@@ -256,28 +256,123 @@
     }
     footer a { color: rgba(255,255,255,.85); }
 
-    /* ── RESPONSIVE NAV ── */
-    @media(max-width:640px){
-      nav ul { gap: 0; }
-      nav ul li a { padding: .4rem .5rem; font-size: .7rem; }
-      .hero-text h1 { font-size: 1.9rem; }
-      .hero-photo { width: 140px; height: 140px; }
+    /* ── HAMBURGER BUTTON ── */
+    .hamburger {
+      display: none; flex-direction: column; justify-content: center;
+      gap: 5px; cursor: pointer; padding: .75rem .5rem;
+      background: none; border: none; flex-shrink: 0;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: #fff; border-radius: 2px;
+      transition: transform .25s, opacity .25s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── MOBILE NAV ── */
+    @media(max-width:720px){
+      .hamburger { display: flex; }
+      nav ul {
+        display: none; flex-direction: column; gap: 0;
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: #122b47;
+        box-shadow: 0 6px 16px rgba(0,0,0,.3);
+        z-index: 200;
+      }
+      nav ul.open { display: flex; }
+      nav ul li a {
+        display: block; padding: .85rem 1.5rem;
+        font-size: .85rem; border-bottom: 1px solid rgba(255,255,255,.07);
+        border-radius: 0;
+      }
+      nav { position: sticky; top: 0; flex-wrap: wrap; }
+    }
+
+    /* ── HERO: mobile ── */
+    @media(max-width:600px){
+      header { padding: 2.5rem 1.25rem 2rem; }
+      .hero-inner {
+        flex-direction: column; align-items: center;
+        text-align: center; gap: 1.5rem;
+      }
+      .hero-photo { width: 150px; height: 150px; }
+      .hero-text h1 { font-size: 1.85rem; }
+      .hero-text .subtitle { font-size: .95rem; }
+      .hero-text .institution { font-size: .82rem; }
+      .hero-links { justify-content: center; }
+      .hero-text { min-width: unset; }
+    }
+
+    /* ── PUBLICATION CARDS: mobile ── */
+    @media(max-width:540px){
+      .pub-card { padding-top: 2.6rem; }
+      .pub-card .pub-year {
+        top: .75rem; right: .75rem; font-size: .7rem;
+      }
+      .pub-card .pub-title { font-size: .88rem; padding-right: 3rem; }
+    }
+
+    /* ── AWARDS TABLE: mobile card layout ── */
+    @media(max-width:600px){
+      .awards-table { display: block; }
+      .awards-table thead { display: none; }
+      .awards-table tbody { display: block; }
+      .awards-table tr {
+        display: block;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        margin-bottom: .75rem;
+        box-shadow: var(--shadow);
+        padding: .25rem 0;
+      }
+      .awards-table td {
+        display: flex; gap: .5rem; align-items: flex-start;
+        padding: .45rem .9rem; border-bottom: none;
+        font-size: .84rem;
+      }
+      .awards-table td::before {
+        content: attr(data-label);
+        font-weight: 700; color: var(--muted);
+        font-size: .72rem; text-transform: uppercase;
+        letter-spacing: .5px; min-width: 60px;
+        padding-top: .15rem; flex-shrink: 0;
+      }
+      .awards-table td:first-child { color: var(--green); font-weight: 700; }
+    }
+
+    /* ── GENERAL MOBILE POLISH ── */
+    @media(max-width:480px){
+      .page { padding: 0 1rem 2.5rem; }
+      section { padding-top: 2.5rem; }
+      .section-title { font-size: 1.45rem; }
+      .about-card { padding: 1rem 1.1rem; }
+      .conf-item { padding: .8rem .9rem; }
+      .book-grid { grid-template-columns: 1fr 1fr; }
+      .other-contrib { gap: .45rem; }
+      .contrib-badge { font-size: .78rem; padding: .28rem .65rem; }
+      footer { font-size: .78rem; }
     }
   </style>
 </head>
 <body>
 
 <!-- ═══ NAVIGATION ═══ -->
-<nav>
+<nav id="main-nav">
   <div class="brand">Dr. Priyanka Swami</div>
-  <ul>
-    <li><a href="#about">About</a></li>
-    <li><a href="#education">Education</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#publications">Publications</a></li>
-    <li><a href="#awards">Awards</a></li>
-    <li><a href="#conferences">Conferences</a></li>
-    <li><a href="#contact">Contact</a></li>
+  <button class="hamburger" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul id="nav-menu">
+    <li><a href="#about"         onclick="closeMenu()">About</a></li>
+    <li><a href="#education"     onclick="closeMenu()">Education</a></li>
+    <li><a href="#experience"    onclick="closeMenu()">Experience</a></li>
+    <li><a href="#publications"  onclick="closeMenu()">Publications</a></li>
+    <li><a href="#awards"        onclick="closeMenu()">Awards</a></li>
+    <li><a href="#conferences"   onclick="closeMenu()">Conferences</a></li>
+    <li><a href="#contact"       onclick="closeMenu()">Contact</a></li>
   </ul>
 </nav>
 
@@ -317,11 +412,12 @@
   <section id="about">
     <h2 class="section-title">About</h2>
     <p style="margin-bottom:1.25rem; color:var(--text); font-size:.95rem;">
-      I am currently working as an Assistant Professor of Agricultural Meteorology at Agriculture University Jodhpur.
-      My research bridges <strong>climate science, remote sensing, and precision agriculture</strong> with a focus on
-      crop modelling, machine learning–based rainfall prediction and agrometeorology in arid and semi-arid
-      ecosystems of Rajasthan. I contributed to national crop forecasting through my work at the Mahalanobis National Crop Forecast Centre 
-      and presented my research at international venues, including Columbia University.
+      Dr. Priyanka Swami is an Assistant Professor of Agricultural Meteorology at Agriculture University Jodhpur.
+      Her research bridges <strong>climate science, remote sensing, and precision agriculture</strong> — with a focus on
+      crop modelling, machine learning–based rainfall prediction, and agrometeorology in arid and semi-arid
+      ecosystems of Rajasthan. She has contributed to national crop forecasting through her work at the
+      Mahalanobis National Crop Forecast Centre and presented her research at international venues including
+      Columbia University, New York.
     </p>
     <div class="about-grid">
       <div class="about-card">
@@ -532,22 +628,22 @@
         <tr><th>Year</th><th>Award / Recognition</th><th>Awarding Agency</th></tr>
       </thead>
       <tbody>
-        <tr><td>2026</td><td>Best Paper Presentation Award</td><td>Sher-e-Kashmir University of Agricultural Sciences &amp; Technology, Jammu</td></tr>
-        <tr><td>2026</td><td>Best Paper Presentation Award</td><td>Central Agriculture University, Imphal</td></tr>
-        <tr><td>2025</td><td>Appreciation Award for University Publications</td><td>Agriculture University Jodhpur</td></tr>
-        <tr><td>2024</td><td>Best Employee Award</td><td>Agriculture University Jodhpur</td></tr>
-        <tr><td>2023</td><td>Vice Chancellor's Appreciation Award</td><td>Agriculture University Jodhpur</td></tr>
-        <tr><td>2023</td><td>Best Paper Award</td><td>Agriculture University Jodhpur</td></tr>
-        <tr><td>2023</td><td>Best Paper Award</td><td>Indian Arid Legumes Society</td></tr>
-        <tr><td>2023</td><td>Best Paper Presentation Award</td><td>Tamil Nadu Agriculture University</td></tr>
-        <tr><td>2022</td><td>Best Paper Award</td><td>Association of Agrometeorologists</td></tr>
-        <tr><td>2017</td><td>Young Scientist Award</td><td>Banaras Hindu University</td></tr>
-        <tr><td>2017</td><td>Best Paper Presentation Award</td><td>Banaras Hindu University</td></tr>
-        <tr><td>2017</td><td>Best Poster Presentation Award</td><td>BHU &amp; G.B. Pant University of Agriculture &amp; Technology</td></tr>
-        <tr><td>2016</td><td>Senior Research Fellowship</td><td>ICAR</td></tr>
-        <tr><td>2016</td><td>Best Team Award</td><td>Confederation of Indian Industry, Chandigarh</td></tr>
-        <tr><td>2016</td><td>Best Poster Presentation Award</td><td>UCBMS&amp;H Dehradun, Uttarakhand</td></tr>
-        <tr><td>2016</td><td>Distinction in Online Training Course</td><td>UAS Raichur &amp; IIT Kanpur</td></tr>
+        <tr><td data-label="Year">2026</td><td data-label="Award">Best Paper Presentation Award</td><td data-label="Agency">Sher-e-Kashmir University of Agricultural Sciences &amp; Technology, Jammu</td></tr>
+        <tr><td data-label="Year">2026</td><td data-label="Award">Best Paper Presentation Award</td><td data-label="Agency">Central Agriculture University, Imphal</td></tr>
+        <tr><td data-label="Year">2025</td><td data-label="Award">Appreciation Award for University Publications</td><td data-label="Agency">Agriculture University Jodhpur</td></tr>
+        <tr><td data-label="Year">2024</td><td data-label="Award">Best Employee Award</td><td data-label="Agency">Agriculture University Jodhpur</td></tr>
+        <tr><td data-label="Year">2023</td><td data-label="Award">Vice Chancellor's Appreciation Award</td><td data-label="Agency">Agriculture University Jodhpur</td></tr>
+        <tr><td data-label="Year">2023</td><td data-label="Award">Best Paper Award</td><td data-label="Agency">Agriculture University Jodhpur</td></tr>
+        <tr><td data-label="Year">2023</td><td data-label="Award">Best Paper Award</td><td data-label="Agency">Indian Arid Legumes Society</td></tr>
+        <tr><td data-label="Year">2023</td><td data-label="Award">Best Paper Presentation Award</td><td data-label="Agency">Tamil Nadu Agriculture University</td></tr>
+        <tr><td data-label="Year">2022</td><td data-label="Award">Best Paper Award</td><td data-label="Agency">Association of Agrometeorologists</td></tr>
+        <tr><td data-label="Year">2017</td><td data-label="Award">Young Scientist Award</td><td data-label="Agency">Banaras Hindu University</td></tr>
+        <tr><td data-label="Year">2017</td><td data-label="Award">Best Paper Presentation Award</td><td data-label="Agency">Banaras Hindu University</td></tr>
+        <tr><td data-label="Year">2017</td><td data-label="Award">Best Poster Presentation Award</td><td data-label="Agency">BHU &amp; G.B. Pant University of Agriculture &amp; Technology</td></tr>
+        <tr><td data-label="Year">2016</td><td data-label="Award">Senior Research Fellowship</td><td data-label="Agency">ICAR</td></tr>
+        <tr><td data-label="Year">2016</td><td data-label="Award">Best Team Award</td><td data-label="Agency">Confederation of Indian Industry, Chandigarh</td></tr>
+        <tr><td data-label="Year">2016</td><td data-label="Award">Best Poster Presentation Award</td><td data-label="Agency">UCBMS&amp;H Dehradun, Uttarakhand</td></tr>
+        <tr><td data-label="Year">2016</td><td data-label="Award">Distinction in Online Training Course</td><td data-label="Agency">UAS Raichur &amp; IIT Kanpur</td></tr>
       </tbody>
     </table>
   </section>
@@ -604,5 +700,23 @@
   <p style="margin-top:.4rem; font-size:.75rem;">Built with GitHub Pages</p>
 </footer>
 
+<script>
+  var toggle = document.getElementById('nav-toggle');
+  var menu   = document.getElementById('nav-menu');
+  toggle.addEventListener('click', function(){
+    var open = menu.classList.toggle('open');
+    toggle.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', open);
+  });
+  function closeMenu(){
+    menu.classList.remove('open');
+    toggle.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }
+  // close menu on outside click
+  document.addEventListener('click', function(e){
+    if(!document.getElementById('main-nav').contains(e.target)) closeMenu();
+  });
+</script>
 </body>
 </html>
