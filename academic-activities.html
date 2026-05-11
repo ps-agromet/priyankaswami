@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Academic Activities — JRF 2027 | Dr. Priyanka Swami</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #1b3a5c;
+      --green:  #2e6f40;
+      --gold:   #b8860b;
+      --bg:     #f7f5f0;
+      --card:   #ffffff;
+      --text:   #1f2937;
+      --muted:  #6b7280;
+      --border: #e5e7eb;
+      --accent: #e8f0fe;
+      --radius: 10px;
+      --shadow: 0 2px 12px rgba(0,0,0,.08);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--navy);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      box-shadow: 0 2px 8px rgba(0,0,0,.25);
+    }
+    nav .brand {
+      color: #fff; font-family: 'Crimson Pro', serif; font-size: 1.15rem;
+      font-weight: 600; padding: 1rem 0; letter-spacing: .3px;
+      text-decoration: none; flex-shrink: 0;
+    }
+    nav ul { list-style: none; display: flex; gap: 0; }
+    nav ul li a {
+      color: rgba(255,255,255,.85); text-decoration: none;
+      font-size: .74rem; font-weight: 500; letter-spacing: .3px;
+      text-transform: uppercase;
+      padding: .45rem .55rem; border-radius: 4px;
+      transition: background .2s, color .2s;
+    }
+    nav ul li a:hover { background: rgba(255,255,255,.15); color: #fff; }
+
+
+    .hamburger {
+      display: none; flex-direction: column; justify-content: center;
+      gap: 5px; cursor: pointer; padding: .75rem .5rem;
+      background: none; border: none; flex-shrink: 0;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: #fff; border-radius: 2px;
+      transition: transform .25s, opacity .25s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+
+    @media(max-width:860px){
+      .hamburger { display: flex; }
+      nav ul {
+        display: none; flex-direction: column; gap: 0;
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: #122b47; box-shadow: 0 6px 16px rgba(0,0,0,.3); z-index: 200;
+      }
+      nav ul.open { display: flex; }
+      nav ul li a {
+        display: block; padding: .85rem 1.5rem;
+        font-size: .85rem; border-bottom: 1px solid rgba(255,255,255,.07); border-radius: 0;
+      }
+      nav { position: sticky; top: 0; flex-wrap: wrap; }
+    }
+
+
+    nav ul li.has-drop { position: relative; }
+    .drop-toggle {
+      display: flex; align-items: center; gap: .3rem;
+      background: none; border: none; cursor: pointer;
+      color: rgba(255,255,255,.85);
+      font-size: .74rem; font-weight: 500; letter-spacing: .3px;
+      text-transform: uppercase; font-family: inherit;
+      padding: .45rem .55rem; border-radius: 4px;
+      transition: background .2s, color .2s;
+    }
+    .drop-toggle:hover, nav ul li.has-drop.open .drop-toggle {
+      background: rgba(255,255,255,.15); color: #fff;
+    }
+    .drop-caret {
+      display: inline-block; width: 0; height: 0;
+      border-left: 4px solid transparent; border-right: 4px solid transparent;
+      border-top: 5px solid rgba(255,255,255,.7);
+      transition: transform .2s; flex-shrink: 0;
+    }
+    nav ul li.has-drop.open .drop-caret { transform: rotate(180deg); }
+    .drop-menu {
+      display: none; position: absolute; top: 100%; left: 0;
+      background: #122b47; min-width: 185px;
+      border-radius: 0 0 6px 6px;
+      box-shadow: 0 6px 16px rgba(0,0,0,.3); z-index: 300;
+    }
+    nav ul li.has-drop.open .drop-menu { display: block; }
+    .drop-menu a {
+      display: block; color: rgba(255,255,255,.85); text-decoration: none;
+      font-size: .78rem; font-weight: 500; letter-spacing: .5px;
+      text-transform: uppercase; padding: .7rem 1.1rem;
+      transition: background .2s, color .2s;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .drop-menu a:last-child { border-bottom: none; }
+    .drop-menu a:hover { background: rgba(255,255,255,.12); color: #fff; }
+    .drop-menu a.active-page { color: #fff; background: rgba(255,255,255,.08); }
+
+    @media(max-width:860px){
+      .drop-toggle {
+        display: block; width: 100%; text-align: left;
+        padding: .85rem 1.5rem; font-size: .85rem;
+        border-radius: 0; border-bottom: 1px solid rgba(255,255,255,.07);
+      }
+      .drop-caret { float: right; margin-top: .35rem; }
+      .drop-menu { position: static; border-radius: 0; box-shadow: none; background: #0e2240; }
+      .drop-menu a { padding-left: 2.5rem; }
+    }
+
+
+    .page-hero {
+      background: linear-gradient(135deg, #1b3a5c 0%, #0f2340 60%, #1b3a5c 100%);
+      color: #fff; padding: 2.75rem 2rem 2.25rem;
+    }
+    .page-hero-inner { max-width: 960px; margin: 0 auto; }
+    .breadcrumb {
+      font-size: .78rem; color: rgba(255,255,255,.55);
+      margin-bottom: .75rem; letter-spacing: .3px;
+    }
+    .breadcrumb a {
+      color: rgba(255,255,255,.65); text-decoration: none;
+      transition: color .2s;
+    }
+    .breadcrumb a:hover { color: #fff; }
+    .page-hero-inner h1 {
+      font-family: 'Crimson Pro', serif;
+      font-size: 2.2rem; font-weight: 600; line-height: 1.15;
+      margin-bottom: .35rem;
+    }
+    .page-hero-inner .hero-sub {
+      font-size: .92rem; color: rgba(255,255,255,.7);
+    }
+
+
+    .page { max-width: 960px; margin: 0 auto; padding: 2.5rem 1.5rem 3rem; }
+
+    .section-title {
+      font-family: 'Crimson Pro', serif;
+      font-size: 1.75rem; font-weight: 600; color: var(--navy);
+      border-bottom: 3px solid var(--green);
+      padding-bottom: .4rem; margin-bottom: 1.5rem;
+      display: inline-block;
+    }
+
+
+    footer {
+      background: var(--navy); color: rgba(255,255,255,.7);
+      text-align: center; padding: 1.75rem 1rem;
+      font-size: .82rem; margin-top: 2rem;
+    }
+    footer a { color: rgba(255,255,255,.85); }
+
+
+    .jrf-bar-wrap { background: var(--border); border-radius: 4px; height: 8px; margin-bottom: 1.5rem; overflow: hidden; }
+    .jrf-bar { height: 100%; background: linear-gradient(90deg, var(--green), #38a169); border-radius: 4px; transition: width .6s ease; width: 0%; }
+    .jrf-stats { display: flex; gap: .9rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .jrf-stat {
+      flex: 1; min-width: 100px; text-align: center;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: .85rem 1rem;
+      box-shadow: var(--shadow);
+    }
+    .jrf-stat .sn { font-family: 'Crimson Pro', serif; font-size: 1.9rem; font-weight: 700; color: var(--navy); line-height: 1; }
+    .jrf-stat .sl { font-size: .68rem; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; margin-top: .2rem; }
+
+    .jrf-filters { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1.75rem; }
+    .jrf-filter {
+      background: var(--card); border: 1.5px solid var(--border);
+      color: var(--navy); padding: .35rem .9rem; border-radius: 20px;
+      font-size: .73rem; font-weight: 600; cursor: pointer;
+      text-transform: uppercase; letter-spacing: .5px;
+      transition: all .2s; font-family: inherit;
+    }
+    .jrf-filter.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+    .jrf-filter:hover:not(.active) { border-color: var(--navy); }
+
+    .jrf-tl { position: relative; padding-left: 2.4rem; }
+    .jrf-tl::before {
+      content: ''; position: absolute; left: .75rem; top: 0; bottom: 0;
+      width: 2px; background: var(--border);
+    }
+
+    .phase-hdr {
+      font-family: 'Crimson Pro', serif; font-size: 1.1rem; font-weight: 600;
+      color: var(--navy); margin: 2rem 0 .9rem;
+      display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+    }
+    .phase-hdr::after { content: ''; flex: 1; height: 1px; background: var(--border); min-width: 2rem; }
+    .phase-hdr .ph-tag {
+      background: var(--navy); color: #fff; font-size: .62rem;
+      padding: .15rem .5rem; border-radius: 3px;
+      font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: .5px;
+    }
+    .phase-hdr .ph-dates { font-size: .78rem; color: var(--muted); font-family: 'Inter', sans-serif; }
+
+    .jtest {
+      position: relative; margin-bottom: 1rem;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: .8rem 1rem;
+      box-shadow: var(--shadow);
+    }
+    .jtest::before {
+      content: ''; position: absolute; left: -1.65rem; top: 1rem;
+      width: 12px; height: 12px; border-radius: 50%;
+      border: 2px solid var(--bg); background: var(--border);
+    }
+    .jtest.past { opacity: .72; }
+    .jtest.past::before { background: var(--green); }
+    .jtest.next { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(184,134,11,.13), var(--shadow); }
+    .jtest.next::before { background: var(--gold); }
+    .jtest.future::before { background: var(--navy); }
+    .jtest.is-major { border-left: 3px solid var(--navy); }
+    .jtest.is-major.past  { border-left-color: var(--green); }
+    .jtest.is-major.next  { border-left-color: var(--gold); }
+
+    .jtest-meta { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; margin-bottom: .3rem; }
+    .jtest-num {
+      background: var(--navy); color: #fff;
+      font-size: .63rem; font-weight: 700; padding: .12rem .5rem;
+      border-radius: 3px; letter-spacing: .5px; white-space: nowrap;
+    }
+    .jtest.past .jtest-num { background: var(--green); }
+    .jtest.next .jtest-num { background: var(--gold); }
+    .jtest-date { font-size: .78rem; color: var(--muted); }
+    .jtest-badges { margin-left: auto; display: flex; gap: .3rem; flex-shrink: 0; }
+    .jtest-badge {
+      font-size: .6rem; font-weight: 700; padding: .12rem .48rem;
+      border-radius: 3px; text-transform: uppercase; letter-spacing: .5px;
+    }
+    .badge-done  { background: #d1fae5; color: #065f46; }
+    .badge-next  { background: #fef3c7; color: #92400e; }
+    .badge-major { background: #e0e7ff; color: #3730a3; }
+
+    .jtest-label { font-size: .87rem; font-weight: 600; color: var(--text); }
+    .jtest-pills { display: flex; gap: .35rem; flex-wrap: wrap; margin-top: .45rem; }
+    .jtest-pill {
+      background: var(--accent); color: var(--navy);
+      font-size: .68rem; padding: .15rem .55rem; border-radius: 20px; font-weight: 500;
+    }
+
+    @media(max-width:480px){
+      .page { padding: 1.75rem 1rem 2.5rem; }
+      .jrf-stat .sn { font-size: 1.5rem; }
+      .jrf-stat { padding: .7rem .75rem; }
+      .jrf-tl { padding-left: 1.75rem; }
+      .jtest::before { left: -1.1rem; }
+      .page-hero-inner h1 { font-size: 1.7rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ NAVIGATION ═══ -->
+<nav id="main-nav">
+  <a class="brand" href="index.html">Dr. Priyanka Swami</a>
+  <button class="hamburger" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul id="nav-menu">
+    <li><a href="index.html#about"        onclick="closeMenu()">About</a></li>
+    <li><a href="index.html#education"    onclick="closeMenu()">Education</a></li>
+    <li><a href="index.html#experience"   onclick="closeMenu()">Experience</a></li>
+    <li><a href="index.html#publications" onclick="closeMenu()">Publications</a></li>
+    <li><a href="index.html#awards"       onclick="closeMenu()">Awards</a></li>
+    <li><a href="index.html#conferences"  onclick="closeMenu()">Conferences</a></li>
+    <li><a href="index.html#contact"      onclick="closeMenu()">Contact</a></li>
+    <li class="has-drop" id="jrf-drop">
+      <button class="drop-toggle" aria-haspopup="true" aria-expanded="false">
+        JRF TS <span class="drop-caret"></span>
+      </button>
+      <div class="drop-menu">
+        <a href="academic-activities.html" class="active-page" onclick="closeDrop();closeMenu()">Academic Activities</a>
+      </div>
+    </li>
+  </ul>
+</nav>
+
+<!-- ═══ PAGE HERO ═══ -->
+<header class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> &rsaquo; JRF TS &rsaquo; Academic Activities
+    </div>
+    <h1>Academic Activities</h1>
+    <p class="hero-sub">One AIM &mdash; JRF 2027 &bull; 57-test preparation timeline &bull; May 2026 &ndash; May 2027</p>
+  </div>
+</header>
+
+<!-- ═══ CONTENT ═══ -->
+<div class="page">
+
+  <div class="jrf-bar-wrap"><div class="jrf-bar" id="jrf-bar"></div></div>
+  <div class="jrf-stats" id="jrf-stats"></div>
+
+  <div class="jrf-filters">
+    <button class="jrf-filter active" data-ph="0" onclick="renderJRF(0)">All Tests</button>
+    <button class="jrf-filter" data-ph="1" onclick="renderJRF(1)">Phase 1 &mdash; Foundation</button>
+    <button class="jrf-filter" data-ph="2" onclick="renderJRF(2)">Phase 2 &mdash; Subject Tests</button>
+    <button class="jrf-filter" data-ph="3" onclick="renderJRF(3)">Phase 3 &mdash; Major Tests</button>
+  </div>
+
+  <div id="jrf-timeline"></div>
+
+</div><!-- /page -->
+
+<footer>
+  <p>&copy; 2025 Dr. Priyanka Swami &mdash; Assistant Professor, Agricultural Meteorology, Agriculture University Jodhpur</p>
+  <p style="margin-top:.4rem; font-size:.75rem;">Built with GitHub Pages</p>
+</footer>
+
+<script>
+  // ── NAV HAMBURGER ──
+  var toggle = document.getElementById('nav-toggle');
+  var menu   = document.getElementById('nav-menu');
+  toggle.addEventListener('click', function(){
+    var open = menu.classList.toggle('open');
+    toggle.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', open);
+  });
+  function closeMenu(){
+    menu.classList.remove('open');
+    toggle.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+  }
+  document.addEventListener('click', function(e){
+    if(!document.getElementById('main-nav').contains(e.target)){ closeMenu(); closeDrop(); }
+  });
+
+  // ── NAV DROPDOWN ──
+  var jrfDrop = document.getElementById('jrf-drop');
+  var jrfBtn  = jrfDrop.querySelector('.drop-toggle');
+  function closeDrop(){ jrfDrop.classList.remove('open'); jrfBtn.setAttribute('aria-expanded','false'); }
+  jrfBtn.addEventListener('click', function(e){
+    e.stopPropagation();
+    var open = jrfDrop.classList.toggle('open');
+    jrfBtn.setAttribute('aria-expanded', open);
+  });
+
+  // ── JRF TIMELINE ──
+  (function(){
+    var TODAY = new Date(); TODAY.setHours(0,0,0,0);
+    var MO = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var PH_NAME  = ['','Phase 1 — Foundation','Phase 2 — Subject Tests','Phase 3 — Major Tests'];
+    var PH_DATES = ['','May – Jul 2026','Jul – Nov 2026','Nov 2026 – May 2027'];
+    var SUB6 = ['Plant Science','Horticulture','Physical Science','Social Sciences','Agronomy','Entomology'];
+
+    var TESTS = [
+      {n:1,  d:'2026-05-03', lbl:'Arun Katyayan Volume-I', ph:1},
+      {n:2,  d:'2026-05-10', lbl:'Arun Katyayan Volume-II', ph:1},
+      {n:3,  d:'2026-05-17', lbl:'Agronomy + Soil Science', ph:1},
+      {n:4,  d:'2026-05-24', lbl:'Horticulture', ph:1},
+      {n:5,  d:'2026-05-31', lbl:'General Agriculture Group 1', sub:['GPB','Seed Technology','Animal Husbandry'], ph:1},
+      {n:6,  d:'2026-06-07', lbl:'General Agriculture Group 2', sub:['Entomology','Plant Pathology','Nematology'], ph:1},
+      {n:7,  d:'2026-06-14', lbl:'General Agriculture Group 3', sub:['Economics','Extension Education','Statistics'], ph:1},
+      {n:8,  d:'2026-06-21', lbl:'General Agriculture Group 4', sub:['Biotechnology','Biochemistry','Physiology','Environment & Ecology'], ph:1},
+      {n:9,  d:'2026-06-28', lbl:'General Agriculture Group 1 (Revision)', sub:['GPB','Seed Technology','Animal Husbandry'], ph:1},
+      {n:10, d:'2026-07-05', lbl:'General Agriculture Group 2 (Revision)', sub:['Entomology','Plant Pathology','Nematology'], ph:1},
+      {n:11, d:'2026-07-12', lbl:'General Agriculture Group 3 (Revision)', sub:['Economics','Extension Education','Statistics'], ph:1},
+      {n:12, d:'2026-07-19', lbl:'General Agriculture Group 4 (Revision)', sub:['Biotechnology','Biochemistry','Physiology','Environment & Ecology'], ph:1},
+      {n:13, d:'2026-07-26', lbl:'Major Test 1', major:1, ph:2},
+      {n:14, d:'2026-08-02', lbl:'Subject Tests — Series 1', sub:SUB6, ph:2},
+      {n:15, d:'2026-08-09', lbl:'Subject Tests — Series 2', sub:SUB6, ph:2},
+      {n:16, d:'2026-08-16', lbl:'Subject Tests — Series 3', sub:SUB6, ph:2},
+      {n:17, d:'2026-08-23', lbl:'Major Test 2', major:1, ph:2},
+      {n:18, d:'2026-08-30', lbl:'Subject Tests — Series 4', sub:SUB6, ph:2},
+      {n:19, d:'2026-09-06', lbl:'Subject Tests — Series 5', sub:SUB6, ph:2},
+      {n:20, d:'2026-09-13', lbl:'Subject Tests — Series 6', sub:SUB6, ph:2},
+      {n:21, d:'2026-09-20', lbl:'Subject Tests — Series 7', sub:SUB6, ph:2},
+      {n:22, d:'2026-09-27', lbl:'Subject Tests — Series 8', sub:SUB6, ph:2},
+      {n:23, d:'2026-10-04', lbl:'Subject Tests — Series 9', sub:SUB6, ph:2},
+      {n:24, d:'2026-10-11', lbl:'Subject Tests — Series 10', sub:SUB6, ph:2},
+      {n:25, d:'2026-10-18', lbl:'Subject Tests — Series 11', sub:SUB6, ph:2},
+      {n:26, d:'2026-10-25', lbl:'Major Test 3', major:1, ph:2},
+      {n:27, d:'2026-11-01', lbl:'Subject Tests — Series 12', sub:SUB6, ph:2},
+      {n:28, d:'2026-11-08', lbl:'Subject Tests — Series 13', sub:SUB6, ph:2},
+      {n:29, d:'2026-11-15', lbl:'Subject Tests — Series 14', sub:SUB6, ph:2},
+      {n:30, d:'2026-11-22', lbl:'Subject Tests — Series 15', sub:SUB6, ph:2},
+      {n:31, d:'2026-11-29', lbl:'Major Subject Test 01', major:1, ph:3},
+      {n:32, d:'2026-12-06', lbl:'Major Subject Test 02', major:1, ph:3},
+      {n:33, d:'2026-12-13', lbl:'Major Subject Test 03', major:1, ph:3},
+      {n:34, d:'2026-12-20', lbl:'Major Subject Test 04 · Major Test 4', major:1, ph:3},
+      {n:35, d:'2026-12-27', lbl:'Major Test 5', major:1, ph:3},
+      {n:36, d:'2027-01-03', lbl:'Subject Major Tests — Series 5', sub:SUB6, ph:3},
+      {n:37, d:'2027-01-10', lbl:'Major Test 6', major:1, ph:3},
+      {n:38, d:'2027-01-17', lbl:'Subject Major Tests — Series 6', sub:SUB6, ph:3},
+      {n:39, d:'2027-01-24', lbl:'Major Test 7', major:1, ph:3},
+      {n:40, d:'2027-01-31', lbl:'Subject Major Tests — Series 7', sub:SUB6, ph:3},
+      {n:41, d:'2027-02-07', lbl:'Major Test 8', major:1, ph:3},
+      {n:42, d:'2027-02-14', lbl:'Subject Major Tests — Series 8', sub:SUB6, ph:3},
+      {n:43, d:'2027-02-21', lbl:'Major Test 9', major:1, ph:3},
+      {n:44, d:'2027-02-28', lbl:'Subject Major Tests — Series 9', sub:SUB6, ph:3},
+      {n:45, d:'2027-03-07', lbl:'Major Test 10', major:1, ph:3},
+      {n:46, d:'2027-03-14', lbl:'Subject Major Tests — Series 10', sub:SUB6, ph:3},
+      {n:47, d:'2027-03-21', lbl:'Major Test 11', major:1, ph:3},
+      {n:48, d:'2027-03-28', lbl:'Subject Major Tests — Series 11', sub:SUB6, ph:3},
+      {n:49, d:'2027-04-04', lbl:'Major Test 12', major:1, ph:3},
+      {n:50, d:'2027-04-11', lbl:'Subject Major Tests — Series 12', sub:SUB6, ph:3},
+      {n:51, d:'2027-04-18', lbl:'Major Test 13', major:1, ph:3},
+      {n:52, d:'2027-04-25', lbl:'Subject Major Tests — Series 13', sub:SUB6, ph:3},
+      {n:53, d:'2027-05-02', lbl:'Major Test 14', major:1, ph:3},
+      {n:54, d:'2027-05-09', lbl:'Subject Major Tests — Series 14', sub:SUB6, ph:3},
+      {n:55, d:'2027-05-16', lbl:'Major Test 15', major:1, ph:3},
+      {n:56, d:'2027-05-23', lbl:'Subject Major Tests — Series 15', sub:SUB6, ph:3},
+      {n:57, d:'2027-05-30', lbl:'General Agriculture — Final Test', major:1, ph:3},
+    ];
+
+    function parseD(s){ var p=s.split('-'); return new Date(+p[0],+p[1]-1,+p[2]); }
+    function fmtD(s){ var dt=parseD(s); return dt.getDate()+' '+MO[dt.getMonth()]+' '+dt.getFullYear(); }
+
+    var nextIdx = -1;
+    TESTS.forEach(function(t,i){
+      var dt=parseD(t.d); dt.setHours(0,0,0,0);
+      if(dt<TODAY){ t.st='past'; }
+      else if(nextIdx===-1){ t.st='next'; nextIdx=i; }
+      else { t.st='future'; }
+    });
+
+    var past = TESTS.filter(function(t){ return t.st==='past'; }).length;
+    var pct  = Math.round(past/TESTS.length*100);
+    document.getElementById('jrf-bar').style.width = pct+'%';
+
+    var nxt  = nextIdx>=0 ? TESTS[nextIdx] : null;
+    var days = nxt ? Math.ceil((parseD(nxt.d)-TODAY)/86400000) : 0;
+    document.getElementById('jrf-stats').innerHTML =
+      '<div class="jrf-stat"><div class="sn">'+past+'</div><div class="sl">Completed</div></div>'+
+      '<div class="jrf-stat"><div class="sn">'+(TESTS.length-past)+'</div><div class="sl">Remaining</div></div>'+
+      '<div class="jrf-stat"><div class="sn">'+pct+'%</div><div class="sl">Progress</div></div>'+
+      (nxt?'<div class="jrf-stat"><div class="sn">'+days+'</div><div class="sl">Days to Next</div></div>':'');
+
+    window.renderJRF = function(ph){
+      document.querySelectorAll('.jrf-filter').forEach(function(b){ b.classList.toggle('active',+b.dataset.ph===ph); });
+      var list = ph===0 ? TESTS : TESTS.filter(function(t){ return t.ph===ph; });
+      var html = '<div class="jrf-tl">';
+      var curPh = -1;
+      list.forEach(function(t){
+        if(ph===0 && t.ph!==curPh){
+          curPh=t.ph;
+          html+='<div class="phase-hdr"><span class="ph-tag">Phase '+curPh+'</span>'+PH_NAME[curPh]+
+                '<span class="ph-dates">'+PH_DATES[curPh]+'</span></div>';
+        }
+        var cls='jtest '+t.st+(t.major?' is-major':'');
+        var bdgs='';
+        if(t.st==='past') bdgs+='<span class="jtest-badge badge-done">Done</span>';
+        if(t.st==='next') bdgs+='<span class="jtest-badge badge-next">Next Up</span>';
+        if(t.major)       bdgs+='<span class="jtest-badge badge-major">Major</span>';
+        var pills='';
+        if(t.sub) pills='<div class="jtest-pills">'+t.sub.map(function(s){ return '<span class="jtest-pill">'+s+'</span>'; }).join('')+'</div>';
+        html+='<div class="'+cls+'" id="jt'+t.n+'">'+
+          '<div class="jtest-meta">'+
+            '<span class="jtest-num">Test '+t.n+'</span>'+
+            '<span class="jtest-date">'+fmtD(t.d)+'</span>'+
+            (bdgs?'<span class="jtest-badges">'+bdgs+'</span>':'')+
+          '</div>'+
+          '<div class="jtest-label">'+t.lbl+'</div>'+
+          pills+
+        '</div>';
+      });
+      html+='</div>';
+      document.getElementById('jrf-timeline').innerHTML=html;
+      if(ph===0 && nextIdx>=0){
+        setTimeout(function(){
+          var el=document.getElementById('jt'+TESTS[nextIdx].n);
+          if(el) el.scrollIntoView({behavior:'smooth',block:'center'});
+        },120);
+      }
+    };
+
+    renderJRF(0);
+  })();
+</script>
+</body>
+</html>

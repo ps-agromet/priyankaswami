@@ -36,6 +36,7 @@
       font-size: 15px;
     }
 
+
     nav {
       position: sticky; top: 0; z-index: 100;
       background: var(--navy);
@@ -48,12 +49,12 @@
       padding: 1rem 0; letter-spacing: .3px;
       font-family: 'Crimson Pro', serif; font-size: 1.15rem;
     }
-    nav ul { list-style: none; display: flex; gap: .25rem; }
+    nav ul { list-style: none; display: flex; gap: 0; }
     nav ul li a {
       color: rgba(255,255,255,.85); text-decoration: none;
-      font-size: .8rem; font-weight: 500; letter-spacing: .5px;
+      font-size: .74rem; font-weight: 500; letter-spacing: .3px;
       text-transform: uppercase;
-      padding: .45rem .75rem; border-radius: 4px;
+      padding: .45rem .55rem; border-radius: 4px;
       transition: background .2s, color .2s;
     }
     nav ul li a:hover { background: rgba(255,255,255,.15); color: #fff; }
@@ -101,6 +102,7 @@
     .hero-links a:hover { background: rgba(255,255,255,.25); }
     .hero-links svg { width: 14px; height: 14px; fill: currentColor; }
 
+   
     .page { max-width: 960px; margin: 0 auto; padding: 0 1.5rem 3rem; }
 
     section { padding-top: 3.5rem; }
@@ -112,6 +114,7 @@
       display: inline-block;
     }
 
+   
     .about-grid {
       display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem;
     }
@@ -133,6 +136,7 @@
       font-size: .78rem; font-weight: 500; padding: .25rem .75rem;
       border-radius: 30px; border: 1px solid #c7d9f7;
     }
+
 
     .timeline { position: relative; padding-left: 1.6rem; }
     .timeline::before {
@@ -161,6 +165,7 @@
       margin-top: .15rem;
     }
 
+ 
     .pub-list { display: flex; flex-direction: column; gap: 1rem; }
     .pub-card {
       background: var(--card); border-radius: var(--radius);
@@ -207,6 +212,7 @@
     }
     .contrib-badge span { font-weight: 700; color: var(--navy); }
 
+   
     .awards-table { width: 100%; border-collapse: collapse; background: var(--card);
       border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
     .awards-table thead { background: var(--navy); color: #fff; }
@@ -216,6 +222,7 @@
     .awards-table tbody tr:hover { background: #eef2ff; }
     .awards-table td { padding: .65rem 1rem; font-size: .86rem; border-bottom: 1px solid var(--border); }
     .awards-table td:first-child { font-weight: 700; color: var(--green); white-space: nowrap; }
+
 
     .conf-list { display: flex; flex-direction: column; gap: .85rem; }
     .conf-item {
@@ -231,6 +238,7 @@
     .conf-item p { font-size: .87rem; color: var(--text); }
     .conf-item strong { color: var(--navy); }
 
+
     .resp-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(220px,1fr)); gap: 1rem; }
     .resp-card {
       background: var(--card); border-radius: var(--radius);
@@ -239,6 +247,7 @@
     }
     .resp-card p { font-size: .87rem; color: var(--text); }
 
+
     footer {
       background: var(--navy); color: rgba(255,255,255,.7);
       text-align: center; padding: 1.75rem 1rem;
@@ -246,6 +255,7 @@
     }
     footer a { color: rgba(255,255,255,.85); }
 
+   
     .hamburger {
       display: none; flex-direction: column; justify-content: center;
       gap: 5px; cursor: pointer; padding: .75rem .5rem;
@@ -260,7 +270,8 @@
     .hamburger.open span:nth-child(2) { opacity: 0; }
     .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-    @media(max-width:720px){
+  
+    @media(max-width:860px){
       .hamburger { display: flex; }
       nav ul {
         display: none; flex-direction: column; gap: 0;
@@ -278,6 +289,7 @@
       nav { position: sticky; top: 0; flex-wrap: wrap; }
     }
 
+
     @media(max-width:600px){
       header { padding: 2.5rem 1.25rem 2rem; }
       .hero-inner {
@@ -292,7 +304,7 @@
       .hero-text { min-width: unset; }
     }
 
-    
+
     @media(max-width:540px){
       .pub-card { padding-top: 2.6rem; }
       .pub-card .pub-year {
@@ -301,7 +313,7 @@
       .pub-card .pub-title { font-size: .88rem; padding-right: 3rem; }
     }
 
-    
+ 
     @media(max-width:600px){
       .awards-table { display: block; }
       .awards-table thead { display: none; }
@@ -330,7 +342,7 @@
       .awards-table td:first-child { color: var(--green); font-weight: 700; }
     }
 
-    
+
     @media(max-width:480px){
       .page { padding: 0 1rem 2.5rem; }
       section { padding-top: 2.5rem; }
@@ -342,11 +354,60 @@
       .contrib-badge { font-size: .78rem; padding: .28rem .65rem; }
       footer { font-size: .78rem; }
     }
+
+
+    nav ul li.has-drop { position: relative; }
+    .drop-toggle {
+      display: flex; align-items: center; gap: .3rem;
+      background: none; border: none; cursor: pointer;
+      color: rgba(255,255,255,.85);
+      font-size: .74rem; font-weight: 500; letter-spacing: .3px;
+      text-transform: uppercase; font-family: inherit;
+      padding: .45rem .55rem; border-radius: 4px;
+      transition: background .2s, color .2s;
+    }
+    .drop-toggle:hover, nav ul li.has-drop.open .drop-toggle {
+      background: rgba(255,255,255,.15); color: #fff;
+    }
+    .drop-caret {
+      display: inline-block; width: 0; height: 0;
+      border-left: 4px solid transparent; border-right: 4px solid transparent;
+      border-top: 5px solid rgba(255,255,255,.7);
+      transition: transform .2s; flex-shrink: 0;
+    }
+    nav ul li.has-drop.open .drop-caret { transform: rotate(180deg); }
+    .drop-menu {
+      display: none; position: absolute; top: 100%; left: 0;
+      background: #122b47; min-width: 185px;
+      border-radius: 0 0 6px 6px;
+      box-shadow: 0 6px 16px rgba(0,0,0,.3); z-index: 300;
+    }
+    nav ul li.has-drop.open .drop-menu { display: block; }
+    .drop-menu a {
+      display: block; color: rgba(255,255,255,.85); text-decoration: none;
+      font-size: .78rem; font-weight: 500; letter-spacing: .5px;
+      text-transform: uppercase; padding: .7rem 1.1rem;
+      transition: background .2s, color .2s;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .drop-menu a:last-child { border-bottom: none; }
+    .drop-menu a:hover { background: rgba(255,255,255,.12); color: #fff; }
+
+    @media(max-width:860px){
+      .drop-toggle {
+        display: block; width: 100%; text-align: left;
+        padding: .85rem 1.5rem; font-size: .85rem;
+        border-radius: 0; border-bottom: 1px solid rgba(255,255,255,.07);
+      }
+      .drop-caret { float: right; margin-top: .35rem; }
+      .drop-menu { position: static; border-radius: 0; box-shadow: none; background: #0e2240; }
+      .drop-menu a { padding-left: 2.5rem; }
+    }
   </style>
 </head>
 <body>
 
-  
+<!-- ═══ NAVIGATION ═══ -->
 <nav id="main-nav">
   <div class="brand">Dr. Priyanka Swami</div>
   <button class="hamburger" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -360,10 +421,18 @@
     <li><a href="#awards"        onclick="closeMenu()">Awards</a></li>
     <li><a href="#conferences"   onclick="closeMenu()">Conferences</a></li>
     <li><a href="#contact"       onclick="closeMenu()">Contact</a></li>
+    <li class="has-drop" id="jrf-drop">
+      <button class="drop-toggle" aria-haspopup="true" aria-expanded="false">
+        JRF TS <span class="drop-caret"></span>
+      </button>
+      <div class="drop-menu">
+        <a href="academic-activities.html" onclick="closeDrop();closeMenu()">Academic Activities</a>
+      </div>
+    </li>
   </ul>
 </nav>
 
-  
+<!-- ═══ HERO ═══ -->
 <header>
   <div class="hero-inner">
     <img class="hero-photo" src="photo.jpeg" alt="Dr. Priyanka Swami" />
@@ -395,6 +464,7 @@
 
 <div class="page">
 
+  <!-- ═══ ABOUT ═══ -->
   <section id="about">
     <h2 class="section-title">About</h2>
     <p style="margin-bottom:1.25rem; color:var(--text); font-size:.95rem;">
@@ -430,6 +500,7 @@
     </div>
   </section>
 
+  <!-- ═══ EDUCATION ═══ -->
   <section id="education">
     <h2 class="section-title">Education</h2>
     <div class="timeline">
@@ -460,6 +531,7 @@
     </div>
   </section>
 
+  <!-- ═══ EXPERIENCE ═══ -->
   <section id="experience">
     <h2 class="section-title">Professional Experience</h2>
     <div class="timeline">
@@ -492,6 +564,7 @@
     </div>
   </section>
 
+  <!-- ═══ PUBLICATIONS ═══ -->
   <section id="publications">
     <h2 class="section-title">Research Publications</h2>
 
@@ -603,6 +676,7 @@
     </div>
   </section>
 
+  <!-- ═══ AWARDS ═══ -->
   <section id="awards">
     <h2 class="section-title">Awards &amp; Recognition</h2>
     <table class="awards-table">
@@ -630,6 +704,7 @@
     </table>
   </section>
 
+  <!-- ═══ CONFERENCES ═══ -->
   <section id="conferences">
     <h2 class="section-title">Conference Presentations</h2>
     <div class="conf-list">
@@ -649,6 +724,7 @@
     </div>
   </section>
 
+  <!-- ═══ CONTACT ═══ -->
   <section id="contact">
     <h2 class="section-title">Contact</h2>
     <div class="about-grid">
@@ -673,7 +749,7 @@
     </div>
   </section>
 
-</div>
+</div><!-- /page -->
 
 <footer>
   <p>&copy; 2025 Dr. Priyanka Swami &mdash; Assistant Professor, Agricultural Meteorology, Agriculture University Jodhpur</p>
@@ -695,8 +771,20 @@
   }
   // close menu on outside click
   document.addEventListener('click', function(e){
-    if(!document.getElementById('main-nav').contains(e.target)) closeMenu();
+    if(!document.getElementById('main-nav').contains(e.target)) { closeMenu(); closeDrop(); }
   });
+
+  // ── NAV DROPDOWN ──
+  var jrfDrop = document.getElementById('jrf-drop');
+  var jrfToggleBtn = jrfDrop.querySelector('.drop-toggle');
+  function closeDrop(){ jrfDrop.classList.remove('open'); jrfToggleBtn.setAttribute('aria-expanded','false'); }
+  jrfToggleBtn.addEventListener('click', function(e){
+    e.stopPropagation();
+    var isOpen = jrfDrop.classList.toggle('open');
+    jrfToggleBtn.setAttribute('aria-expanded', isOpen);
+  });
+
+
 </script>
 </body>
 </html>
