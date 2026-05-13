@@ -241,7 +241,6 @@
 </head>
 <body>
 
-<!-- ═══ NAVIGATION ═══ -->
 <nav id="main-nav">
   <a class="brand" href="index.html">Dr. Priyanka Swami</a>
   <button class="hamburger" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -274,7 +273,7 @@
   </ul>
 </nav>
 
-<!-- ═══ PAGE HERO ═══ -->
+
 <header class="page-hero">
   <div class="page-hero-inner">
     <div class="breadcrumb">
@@ -285,7 +284,7 @@
   </div>
 </header>
 
-<!-- ═══ CONTENT ═══ -->
+
 <div class="dashboard-wrap">
 
   <div class="dash-desc">
@@ -313,7 +312,7 @@
     </a>
   </div>
 
-</div><!-- /dashboard-wrap -->
+</div>
 
 <footer>
   <p>&copy; 2025 Dr. Priyanka Swami &mdash; Assistant Professor, Agricultural Meteorology, Agriculture University Jodhpur</p>
@@ -321,7 +320,7 @@
 </footer>
 
 <script>
-  // ── NAV HAMBURGER ──
+ 
   var toggle = document.getElementById('nav-toggle');
   var menu   = document.getElementById('nav-menu');
   toggle.addEventListener('click', function(){
@@ -338,7 +337,7 @@
     if(!document.getElementById('main-nav').contains(e.target)){ closeMenu(); closeAllDrops(); }
   });
 
-  // ── NAV DROPDOWNS (generic) ──
+
   function closeAllDrops(){
     document.querySelectorAll('li.has-drop').forEach(function(li){
       li.classList.remove('open');
@@ -355,7 +354,7 @@
     });
   });
 
-  // ── IFRAME FALLBACK ──
+  
   var frame = document.getElementById('dash-frame');
   frame.addEventListener('error', function(){
     document.getElementById('dash-frame-wrap').style.display = 'none';
