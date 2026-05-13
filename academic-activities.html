@@ -10,7 +10,6 @@
     rel="stylesheet"
   />
   <style>
-    
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
@@ -284,6 +283,7 @@
 </head>
 <body>
 
+<!-- ═══ NAVIGATION ═══ -->
 <nav id="main-nav">
   <a class="brand" href="index.html">Dr. Priyanka Swami</a>
   <button class="hamburger" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -302,12 +302,21 @@
         Academic Activities <span class="drop-caret"></span>
       </button>
       <div class="drop-menu">
-        <a href="academic-activities.html" class="active-page" onclick="closeDrop();closeMenu()">JRF TS</a>
+        <a href="academic-activities.html" class="active-page" onclick="closeAllDrops();closeMenu()">JRF TS</a>
+      </div>
+    </li>
+    <li class="has-drop" id="yield-drop">
+      <button class="drop-toggle" aria-haspopup="true" aria-expanded="false">
+        Research Activities <span class="drop-caret"></span>
+      </button>
+      <div class="drop-menu">
+        <a href="research-activities.html" onclick="closeAllDrops();closeMenu()">Yield Dashboard</a>
       </div>
     </li>
   </ul>
 </nav>
 
+<!-- ═══ PAGE HERO ═══ -->
 <header class="page-hero">
   <div class="page-hero-inner">
     <div class="breadcrumb">
@@ -318,6 +327,7 @@
   </div>
 </header>
 
+<!-- ═══ CONTENT ═══ -->
 <div class="page">
 
   <div class="jrf-bar-wrap"><div class="jrf-bar" id="jrf-bar"></div></div>
@@ -332,7 +342,7 @@
 
   <div id="jrf-timeline"></div>
 
-</div>
+</div><!-- /page -->
 
 <footer>
   <p>&copy; 2025 Dr. Priyanka Swami &mdash; Assistant Professor, Agricultural Meteorology, Agriculture University Jodhpur</p>
@@ -354,17 +364,24 @@
     toggle.setAttribute('aria-expanded', 'false');
   }
   document.addEventListener('click', function(e){
-    if(!document.getElementById('main-nav').contains(e.target)){ closeMenu(); closeDrop(); }
+    if(!document.getElementById('main-nav').contains(e.target)){ closeMenu(); closeAllDrops(); }
   });
 
-  // ── NAV DROPDOWN ──
-  var jrfDrop = document.getElementById('jrf-drop');
-  var jrfBtn  = jrfDrop.querySelector('.drop-toggle');
-  function closeDrop(){ jrfDrop.classList.remove('open'); jrfBtn.setAttribute('aria-expanded','false'); }
-  jrfBtn.addEventListener('click', function(e){
-    e.stopPropagation();
-    var open = jrfDrop.classList.toggle('open');
-    jrfBtn.setAttribute('aria-expanded', open);
+  // ── NAV DROPDOWNS (generic) ──
+  function closeAllDrops(){
+    document.querySelectorAll('li.has-drop').forEach(function(li){
+      li.classList.remove('open');
+      li.querySelector('.drop-toggle').setAttribute('aria-expanded','false');
+    });
+  }
+  function closeDrop(){ closeAllDrops(); }
+  document.querySelectorAll('li.has-drop').forEach(function(li){
+    li.querySelector('.drop-toggle').addEventListener('click', function(e){
+      e.stopPropagation();
+      var wasOpen = li.classList.contains('open');
+      closeAllDrops();
+      if(!wasOpen){ li.classList.add('open'); li.querySelector('.drop-toggle').setAttribute('aria-expanded','true'); }
+    });
   });
 
   // ── JRF TIMELINE ──
