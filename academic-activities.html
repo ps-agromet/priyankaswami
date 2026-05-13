@@ -283,7 +283,6 @@
 </head>
 <body>
 
-<!-- ═══ NAVIGATION ═══ -->
 <nav id="main-nav">
   <a class="brand" href="index.html">Dr. Priyanka Swami</a>
   <button class="hamburger" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
@@ -316,7 +315,7 @@
   </ul>
 </nav>
 
-<!-- ═══ PAGE HERO ═══ -->
+
 <header class="page-hero">
   <div class="page-hero-inner">
     <div class="breadcrumb">
@@ -327,7 +326,7 @@
   </div>
 </header>
 
-<!-- ═══ CONTENT ═══ -->
+
 <div class="page">
 
   <div class="jrf-bar-wrap"><div class="jrf-bar" id="jrf-bar"></div></div>
@@ -342,7 +341,7 @@
 
   <div id="jrf-timeline"></div>
 
-</div><!-- /page -->
+</div>
 
 <footer>
   <p>&copy; 2025 Dr. Priyanka Swami &mdash; Assistant Professor, Agricultural Meteorology, Agriculture University Jodhpur</p>
@@ -350,7 +349,7 @@
 </footer>
 
 <script>
-  // ── NAV HAMBURGER ──
+  
   var toggle = document.getElementById('nav-toggle');
   var menu   = document.getElementById('nav-menu');
   toggle.addEventListener('click', function(){
@@ -367,7 +366,7 @@
     if(!document.getElementById('main-nav').contains(e.target)){ closeMenu(); closeAllDrops(); }
   });
 
-  // ── NAV DROPDOWNS (generic) ──
+ 
   function closeAllDrops(){
     document.querySelectorAll('li.has-drop').forEach(function(li){
       li.classList.remove('open');
@@ -384,7 +383,7 @@
     });
   });
 
-  // ── JRF TIMELINE ──
+ 
   (function(){
     var TODAY = new Date(); TODAY.setHours(0,0,0,0);
     var MO = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
