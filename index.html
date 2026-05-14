@@ -73,8 +73,13 @@
       width: 190px; height: 190px;
       border-radius: 50%;
       border: 4px solid rgba(255,255,255,.35);
-      object-fit: cover; object-position: top;
+      background-image: url('photo.jpeg');
+      background-size: cover;
+      background-position: top center;
       box-shadow: 0 8px 32px rgba(0,0,0,.35);
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-select: none;
     }
     .hero-text { flex: 1; min-width: 260px; }
     .hero-text h1 {
@@ -296,7 +301,7 @@
         flex-direction: column; align-items: center;
         text-align: center; gap: 1.5rem;
       }
-      .hero-photo { width: 150px; height: 150px; }
+      .hero-photo { width: 150px; height: 150px; background-size: cover; }
       .hero-text h1 { font-size: 1.85rem; }
       .hero-text .subtitle { font-size: .95rem; }
       .hero-text .institution { font-size: .82rem; }
@@ -443,7 +448,7 @@
 <!-- ═══ HERO ═══ -->
 <header>
   <div class="hero-inner">
-    <img class="hero-photo" src="photo.jpeg" alt="Dr. Priyanka Swami" />
+    <div class="hero-photo" role="img" aria-label="Dr. Priyanka Swami"></div>
     <div class="hero-text">
       <h1>Dr. Priyanka Swami</h1>
       <p class="subtitle">Assistant Professor &amp; Agricultural Meteorologist</p>
